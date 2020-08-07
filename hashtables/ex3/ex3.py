@@ -2,7 +2,23 @@ def intersection(arrays):
     """
     YOUR CODE HERE
     """
-    # Your code here
+    list_nums = {}
+    # initialize dict with first array
+    for num in arrays[0]:
+        list_nums[num] = 0
+
+    for i in range(1, len(arrays)):
+        for num in arrays[i]:
+            if num in list_nums:
+                if list_nums[num] == i - 1:  # if num was in last array
+                    list_nums[num] = i
+                else:
+                    del list_nums[num]
+
+    result = []
+    for item in list_nums.items():
+        if item[1] == len(arrays) - 1:
+            result.append(item[0])
 
     return result
 
